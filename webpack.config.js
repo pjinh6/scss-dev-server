@@ -45,6 +45,25 @@ module.exports = {
 				exclude: /node_modules/,
 				use: 'raw-loader'
 			},
+			{
+				test: /\.js$/,
+				include: [
+					path.resolve(__dirname, 'src/js')
+				],
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env'],
+						plugins: [
+							'@babel/plugin-transform-runtime',
+							['@babel/plugin-transform-regenerator', {
+								'regenerator': true
+							}]
+						]
+					}
+				}
+			}
 		]
 	},
 	plugins: [
